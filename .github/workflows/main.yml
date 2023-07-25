@@ -1,22 +1,57 @@
-name: Build Svelte
-on: 
+name: Create Release Project
+
+# Run on every commit tag which begins 
+# with "v" (e.g., "v0.1.4")
+on:
   push:
-    branches:
+    branch:
       - main
+    tags:
+      - 'v*'
+      
+# Automatically create a GitHub Release, with release details 
+# specified (the relevant commits)
 jobs:
-  build_vue:
+  release:
+    name: Release
     runs-on: ubuntu-latest
-    name: Build Svelte
     steps:
-    - uses: actions/checkout@v2
-      with:
-        ref: 'opt'
-    - id: build-svelte
-      uses: stilosdesign/svelte-pages-action@v1.0.0
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        username: 'antonielbordin'
-        reposname: 'testepage'
-        repospage: 'gh-pages'        
-        script: 'npm install && npm run build'
-        buildfolder: 'dist'
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Changes in this Release
+            - Initial release
+            - Generate Documentation
+          draft: false
+          prerelease: false
+
+# name: Build Svelte
+# on: 
+#   push:
+#     branches:
+#       - main
+# jobs:
+#   build_vue:
+#     runs-on: ubuntu-latest
+#     name: Build Svelte
+#     steps:
+#     - uses: actions/checkout@v2
+#       with:
+#         ref: 'opt'
+#     - id: build-svelte
+#       uses: stilosdesign/svelte-pages-action@v1.0.0
+#       with:
+#         token: ${{ secrets.GITHUB_TOKEN }}
+#         username: 'antonielbordin'
+#         reposname: 'testepage'
+#         repospage: 'gh-pages'        
+#         script: 'npm install && npm run build'
+#         buildfolder: 'dist'
