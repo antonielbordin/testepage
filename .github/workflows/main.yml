@@ -1,0 +1,17 @@
+name: Build Svelte
+on: [push]
+jobs:
+  build_vue:
+    runs-on: ubuntu-latest
+    name: Build Svelte
+    steps:
+    - uses: actions/checkout@v2
+    - id: build-svelte
+      uses: stilosdesign/SveltePagesAction@v1
+      with:
+        username: 'antonielbordin'
+        reposname: 'testepage'
+        repospage: 'gh-pages'
+        token: ${{ secrets.GITHUB_TOKEN }}
+        scripts: 'npm install && npm run build'
+        buildfolder: 'dist'
