@@ -7,7 +7,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - id: build-svelte
-      uses: stilosdesign/svelte-page-action@v1.0.0
+      uses: stilosdesign/svelte-pages-action@v1.0.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         username: 'antonielbordin'
