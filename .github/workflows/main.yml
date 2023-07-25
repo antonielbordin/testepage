@@ -7,11 +7,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - id: build-svelte
-      uses: stilosdesign/SveltePagesAction@v1
+      uses: stilosdesign/svelte-page-action@v1.0.0
       with:
+        token: ${{ secrets.GITHUB_TOKEN }}
         username: 'antonielbordin'
         reposname: 'testepage'
-        repospage: 'gh-pages'
-        token: ${{ secrets.GITHUB_TOKEN }}
+        repospage: 'gh-pages'        
         scripts: 'npm install && npm run build'
         buildfolder: 'dist'
