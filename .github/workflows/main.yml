@@ -13,5 +13,5 @@ jobs:
         username: 'antonielbordin'
         reposname: 'testepage'
         repospage: 'gh-pages'        
-        scripts: 'npm install && npm run build'
+        script: 'npm install && npm run build'
         buildfolder: 'dist'
