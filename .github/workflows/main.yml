@@ -1,11 +1,16 @@
 name: Build Svelte
-on: [push]
+on: 
+  push:
+    branches:
+      - main
 jobs:
   build_vue:
     runs-on: ubuntu-latest
     name: Build Svelte
     steps:
     - uses: actions/checkout@v2
+      with:
+        ref: 'opt'
     - id: build-svelte
       uses: stilosdesign/svelte-pages-action@v1.0.0
       with:
