@@ -1,40 +1,51 @@
-name: Create Release Project
-
-# Run on every commit tag which begins 
-# with "v" (e.g., "v0.1.4")
-on:
-  push:
-    branch:
-      - main
-    tags:
-      - 'v*'
-      
-# Automatically create a GitHub Release, with release details 
-# specified (the relevant commits)
+name: Build And Deploy Svelte
+on: [push]
 jobs:
-  release:
-    name: Release
+  release-with-feature-upload:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
+      - name: Checkout code
         uses: actions/checkout@v3
-      - name: Changelog
-        uses: scottbrenner/generate-changelog-action@master
-        id: Changelog
-        env:
-          REPO: ${{ github.repository }}
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+
+      - name: release-and-upload
+        id: release-and-upload
+        uses: stilosdesign/release-with-feature-upload@main
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body: |
-            ${{ steps.Changelog.outputs.changelog }}
-          draft: false
-          prerelease: false
+          token: ${{ secrets.ACCESS_TOKEN }}
+          username: 'antonielbordin'
+          reposname: 'testepage'
+
+# # Name workflow
+# name: Create Release Project
+# # Run on every commit tag which begins 
+# # with "v" (e.g., "v0.1.4")
+# on:
+#   push:
+#     branch:
+#       - main
+#     tags:
+#       - 'v*'      
+# # Automatically create a GitHub Release, with release details 
+# # specified (the relevant commits)
+# jobs:
+#   release:
+#     name: Release
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout Code
+#         uses: actions/checkout@v3
+#       - name: Create Release
+#         id: create_release
+#         uses: actions/create-release@v1
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+#         with:
+#           tag_name: ${{ github.ref }}
+#           release_name: Release ${{ github.ref }}
+#           body: |
+#             ${{ steps.Changelog.outputs.changelog }}
+#           draft: false
+#           prerelease: false
 
 # name: Build Svelte
 # on: 
