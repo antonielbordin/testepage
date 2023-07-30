@@ -15,6 +15,7 @@ jobs:
           username: 'antonielbordin'
           reposname: 'testepage'
           typerelease: 'patch'
+          tagrelease: 'v1.6.0'
 
 # # Name workflow
 # name: Create Release Project
