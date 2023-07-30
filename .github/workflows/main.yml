@@ -14,7 +14,7 @@ jobs:
           token: ${{ secrets.ACCESS_TOKEN }}
           username: 'antonielbordin'
           reposname: 'testepage'
-          typerelease: 'minor'
+          typerelease: 'patch'
 
 # # Name workflow
 # name: Create Release Project
