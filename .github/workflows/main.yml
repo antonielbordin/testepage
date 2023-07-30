@@ -11,7 +11,7 @@ jobs:
         id: release-and-upload
         uses: stilosdesign/release-with-feature-upload@main
         with:
-          token: ${{ secrets.ACCESS_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           username: 'antonielbordin'
           reposname: 'testepage'
           typerelease: 'patch'
